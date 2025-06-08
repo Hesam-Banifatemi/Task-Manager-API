@@ -5,12 +5,15 @@ const CONNECT_DB = require('./db/connect');
 require('dotenv').config();
 const router = require('./routes/route');
 const errorHandlerMiddleware = require('./middlewares/error-handler');
+const notFound = require('./middlewares/notfound');
+
 //middlewares
 app.use(express.json());
+
 //routers
 app.use('/api/v1/tasks', router);
 app.use(errorHandlerMiddleware);
-
+app.use(notFound);
 
 const start = async() => {
     try {
